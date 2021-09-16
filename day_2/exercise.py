@@ -14,7 +14,7 @@
 import requests
 import json
 import openpyxl
-import pandas as pd
+# import pandas as pd
 
 #Input
     #json file from pokemon api
@@ -33,7 +33,7 @@ response = requests.get('https://pokeapi.co/api/v2/pokemon')
     
 wb = openpyxl.load_workbook('/mnt/c/Users/Jeffe/source/codefellows/vetsInTech/itp_week_4/day_2/output.xlsx')
 sheet = wb['Sheet1']
-sheet2 = wb['Sheet2']
+# sheet2 = wb['Sheet2']
 
 #Create a dictionary, assign to variable
 name_dict = {}
@@ -71,24 +71,25 @@ for char in result:
   # break the scaffolding down far enough that it reduces errors
   single_ab = ab_result[0]["ability"]
   # add individual ability to xl
-  sheet['B' + str(counter1)] = ab_dict[str(name_counter) + " Ability"] = single_ab["name"]
+#   sheet['B' + str(counter1)] = ab_dict[str(name_counter) + " Ability"] = single_ab["name"]
   # add individual ability to dict
-  ab_dict[str(name_counter) + " Ability"] = single_ab["name"]
+  name_dict[str(name_counter) + " Ability"] = single_ab["name"]
   counter1 += 1
   counter2 += 2
   name_counter += 1
 
-
+print(name_dict)
+print(ab_dict)
     #Iterate over dictionary
         #for each item in dictionary
             #assign dictionary values to rows & cols
                 #Write Name to Cell
                 #Write Abilities to Cell
-df = pd.DataFrame(data=name_dict, index=[1])
+# df = pd.DataFrame(data=name_dict, index=[1])
 
-df = (df.T)
+# df = (df.T)
 
-print(df)
+# print(df)
 
 sheet['A1'] = 'Name'
 sheet['B1'] = 'Ability'
